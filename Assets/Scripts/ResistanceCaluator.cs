@@ -36,11 +36,38 @@ public class ResistanceCaluator : MonoBehaviour {
 		//return list of strings
 		return colors;
 }
+
+	//method to take in a list of colors and return the amount in ohms
+	int convertToOhms(List<string> colors){
+		//list of four colors
+		//string to hold the numbers
+		string ohms = "";
+		//loop through all colors in the list
+		foreach (string col in colors) {
+			//loop through all the colors in the code array
+			for (int k = 0; k < code.Length; k++)
+			//find when they match
+				if (col == code [k]) {
+					//add the corresponding number to the ohms string
+					ohms += k;
+					//break out of the foor loop
+					break;
+				}
+		}
+		//create integer to return
+		int iohms = int.Parse (ohms);
+		return iohms;
+	}
+
+	//start method
 	void Start(){
 		//test
 		List<string> resis = convertToColor (152);
 		foreach (string col in resis) {
 			Debug.Log (col);
 		}
+		//test2
+		int ohms = convertToOhms(resis);
+		Debug.Log (ohms);
 	}
 }
