@@ -20,12 +20,12 @@ public class ResistanceCaluator : MonoBehaviour {
 	}	 
 
 	//method to return an array of colors based on resistance
-	Color[] convertToColor(int ohms){
+	string[] convertToColor(int ohms){
 		//array to store colors
-		Color[] colors = new Color[3];
+		List<string> colors = new List<string>();
 		string sOhms = ohms.ToString ();
 		for(int i = 0; i < sOhms.Length; i++)
-			colors[i] = getColor (int.Parse(sOhms[i]));
+			colors.Add(getColor (int.TryParse(sOhms[i])));
 
 	}
 }
