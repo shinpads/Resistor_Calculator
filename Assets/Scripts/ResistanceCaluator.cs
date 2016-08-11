@@ -20,12 +20,27 @@ public class ResistanceCaluator : MonoBehaviour {
 	}	 
 
 	//method to return an array of colors based on resistance
-	string[] convertToColor(int ohms){
-		//array to store colors
+	List<string> convertToColor(int ohms){
+		//list to store colors
 		List<string> colors = new List<string>();
-		string sOhms = ohms.ToString ();
-		for(int i = 0; i < sOhms.Length; i++)
-			colors.Add(getColor (int.TryParse(sOhms[i])));
-
+		//take last digit off and add its representing color to list until only one digit
+		while (ohms > 10) {
+			colors.Add (getColor (ohms % 10));
+			//remove last digit
+			ohms /= 10;
+		}
+		//add last digit
+		colors.Add (getColor (ohms % 10));
+		//reverse colors so that its in proper order (it takes last digit off)
+		colors.Reverse ();
+		//return list of strings
+		return colors;
+}
+	void Start(){
+		//test
+		List<string> resis = convertToColor (152);
+		foreach (string col in resis) {
+			Debug.Log (col);
+		}
 	}
 }
