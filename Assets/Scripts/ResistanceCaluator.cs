@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class ResistanceCaluator : MonoBehaviour {
+
 	//Color codes for resistor in number order
 	private static string[] code = {"black","brown","red","orange","yellow","green","blue","violet","grey","white"};
 
@@ -58,9 +60,15 @@ public class ResistanceCaluator : MonoBehaviour {
 		int iohms = int.Parse (ohms);
 		return iohms;
 	}
+    //Declaring Object and Classes from getinput.cs
+    public GameObject getinput;
+    public inputScript _input;
+
 
 	//start method
 	void Start(){
+        
+            
 		//test
 		List<string> resis = convertToColor (152);
 		foreach (string col in resis) {
@@ -70,4 +78,8 @@ public class ResistanceCaluator : MonoBehaviour {
 		int ohms = convertToOhms(resis);
 		Debug.Log (ohms);
 	}
+
+    void update() {
+
+    }
 }
