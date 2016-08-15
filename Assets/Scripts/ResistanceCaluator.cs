@@ -64,9 +64,8 @@ public class ResistanceCaluator : MonoBehaviour {
 
 
 	//start method
-	void Start(){
-        
-            
+	void Start(){	      
+        /*    
 		//test
 		List<string> resis = convertToColor (152);
 		foreach (string col in resis) {
@@ -75,11 +74,15 @@ public class ResistanceCaluator : MonoBehaviour {
 		//test2
 		int ohms = convertToOhms(resis);
 		Debug.Log (ohms);
+		*/
 	}
 
-	public void changeColor(float ohms){
+	public void changeColor(int ohms){
 		//change color
-		Debug.Log(ohms);
+		List<string> colors = convertToColor(ohms);
+		foreach (string col in colors) {
+			Debug.Log (col);
+		}
 
 	}
 

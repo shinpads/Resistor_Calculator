@@ -11,14 +11,13 @@ public class getinput : MonoBehaviour {
 	void Start(){
 		resistor = GameObject.FindGameObjectWithTag ("resistor");
 	}	
-    private float resistance;
+    private int resistance;
     //Getting input from inputfield
     public void GetInput(string input) {
-        float getRes = float.Parse(input);
+        int getRes = int.Parse(input);
         resistance = getRes;
+		//call changeColor function from resistor object
 		resistor.GetComponent<ResistanceCaluator> ().changeColor (resistance);
-        //test
-        //Debug.Log("Your Number is " + resistance);
     }
 
 
