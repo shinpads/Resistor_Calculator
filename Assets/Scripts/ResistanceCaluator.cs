@@ -21,8 +21,8 @@ public class ResistanceCaluator : MonoBehaviour {
 		return code [n];
 	}	 
 
-	//method to return an array of colors based on resistance
-	List<string> convertToColor(int ohms){
+	//method to return an array of colors based on resistances
+	public List<string> convertToColor(int ohms){
 		//list to store colors
 		List<string> colors = new List<string>();
 		//take last digit off and add its representing color to list until only one digit
@@ -60,9 +60,7 @@ public class ResistanceCaluator : MonoBehaviour {
 		int iohms = int.Parse (ohms);
 		return iohms;
 	}
-    //Declaring Object and Classes from getinput.cs
-    public GameObject getinput;
-    public inputScript _input;
+
 
 
 	//start method
@@ -79,7 +77,10 @@ public class ResistanceCaluator : MonoBehaviour {
 		Debug.Log (ohms);
 	}
 
-    void update() {
+	public void changeColor(float ohms){
+		//change color
+		Debug.Log(ohms);
 
-    }
+	}
+
 }
