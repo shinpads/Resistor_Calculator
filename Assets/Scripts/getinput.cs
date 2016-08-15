@@ -14,6 +14,8 @@ public class getinput : MonoBehaviour {
     private int resistance;
     //Getting input from inputfield
     public void GetInput(string input) {
+		if (input == "")
+			input="0";
         int getRes = int.Parse(input);
         resistance = getRes;
 		//call changeColor function from resistor object
