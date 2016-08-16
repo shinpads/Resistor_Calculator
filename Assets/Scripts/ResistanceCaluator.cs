@@ -25,17 +25,17 @@ public class ResistanceCaluator : MonoBehaviour {
 	public List<string> convertToColor(int ohms){
 		//list to store colors
 		List<string> colors = new List<string>();
-		//take last digit off and add its representing color to list until only one digit
-		while (ohms > 10) {
-			colors.Add (getColor (ohms % 10));
-			//remove last digit
-			ohms /= 10;
+		//Create string from ohms input value
+		string sOhms = ohms.ToString();
+		//make sure it is atleast 3 digits(for 3 bands)
+		while (sOhms.Length < 3) {
+			//add 0 (black) if it is not
+			sOhms = sOhms + "0";
 		}
-		//add last digit
-		colors.Add (getColor (ohms % 10));
-		//reverse colors so that its in proper order (it takes last digit off)
-		colors.Reverse ();
-		//return list of strings
+		foreach (char x in sOhms) {
+			//add a color for each value
+			colors.Add (getColor(int.Parse(""+x)));
+		}
 		return colors;
 }
 
@@ -79,11 +79,16 @@ public class ResistanceCaluator : MonoBehaviour {
 
 	public void changeColor(int ohms){
 		//change color
+		//string to store final colors
+		string outPut = "";
+		//get colors and store in list
 		List<string> colors = convertToColor(ohms);
+		//add each color in list to string
 		foreach (string col in colors) {
-			Debug.Log (col);
+			outPut += col + ", ";
 		}
-
+		//print out
+		Debug.Log (outPut);
 	}
 
 }
