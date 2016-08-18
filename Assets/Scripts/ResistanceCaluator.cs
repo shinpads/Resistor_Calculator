@@ -4,27 +4,28 @@ using System.Collections.Generic;
 
 
 public class ResistanceCaluator : MonoBehaviour {
-
+	
 	//Color codes for resistor in number order
-	private static string[] code = {"black","brown","red","orange","yellow","green","blue","violet","grey","white"};
+	Material[] code = new Material[12];
 
+	void Start (){
 
-	//method to return what value a certain color will represent
-	int getNum(string c){
-		for (int i = 0; i < code.Length; i++)
-			if (code [i] == c)
-				return i;
-		return -1;
+		//load all materials into an array in order
+		for(int k =0; k<12; k++){
+				code [k] = Resources.Load ("b"+k.ToString()) as Material;
+		
+		}
 	}
-	//method to return which color a number is
-	string getColor(int n){
-		return code [n];
-	}	 
 
+	//method to return which color a number is
+
+	Material getColor(int num){
+		return code [num];
+	}
 	//method to return an array of colors based on resistances
-	public List<string> convertToColor(int ohms){
+	public List<Material> convertToColor(int ohms){
 		//list to store colors
-		List<string> colors = new List<string>();
+		List<Material> colors = new List<Material>();
 		//Create string from ohms input value
 		string sOhms = ohms.ToString();
 		//make sure it is atleast 3 digits(for 3 bands)
@@ -39,56 +40,23 @@ public class ResistanceCaluator : MonoBehaviour {
 		return colors;
 }
 
-	//method to take in a list of colors and return the amount in ohms
-	int convertToOhms(List<string> colors){
-		//list of four colors
-		//string to hold the numbers
-		string ohms = "";
-		//loop through all colors in the list
-		foreach (string col in colors) {
-			//loop through all the colors in the code array
-			for (int k = 0; k < code.Length; k++)
-			//find when they match
-				if (col == code [k]) {
-					//add the corresponding number to the ohms string
-					ohms += k;
-					//break out of the foor loop
-					break;
-				}
-		}
-		//create integer to return
-		int iohms = int.Parse (ohms);
-		return iohms;
-	}
-
-
-
-	//start method
-	void Start(){	      
-        /*    
-		//test
-		List<string> resis = convertToColor (152);
-		foreach (string col in resis) {
-			Debug.Log (col);
-		}
-		//test2
-		int ohms = convertToOhms(resis);
-		Debug.Log (ohms);
-		*/
-	}
 
 	public void changeColor(int ohms){
 		//change color
-		//string to store final colors
-		string outPut = "";
-		//get colors and store in list
-		List<string> colors = convertToColor(ohms);
-		//add each color in list to string
-		foreach (string col in colors) {
-			outPut += col + ", ";
+		//load all bands into an array
+		GameObject[] bands = new GameObject[4];
+		for (int i = 1; i < 5; i++) {
+			string band = "band" + i.ToString ();
+			bands [i-1] = GameObject.FindGameObjectWithTag (band);
 		}
-		//print out
-		Debug.Log (outPut);
+		//get colors and store in list
+		List<Material> colors = convertToColor(ohms);
+		foreach(GameObject band in bands){
+			band.GetComponent<Renderer> ().material.color = Color.red;
+			colors.RemoveAt (0);
+		}
+
 	}
 
 }
+s
