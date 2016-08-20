@@ -7,7 +7,7 @@ public class ResistanceCaluator : MonoBehaviour {
 	
 	//Color codes for resistor in number order
 	Material[] code = new Material[12];
-
+	int units = 0;
 	void Start (){
 		//load all materials into an array in order
 		for(int k =0; k<12; k++){
@@ -25,7 +25,7 @@ public class ResistanceCaluator : MonoBehaviour {
 		//Create string from ohms input value
 		string sOhms = ohms.ToString();
 		//make sure it is atleast 3 digits(for 3 bands)
-		while (sOhms.Length < 4) {
+		while (sOhms.Length < 3) {
 			//add 0 (black) if it is not
 			sOhms = sOhms + "0";
 		}
