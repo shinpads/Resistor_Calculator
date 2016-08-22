@@ -27,45 +27,49 @@ public class ResistanceCaluator : MonoBehaviour {
 		string sOhms = ohms.ToString();
 
 		//make sure it is atleast 3 digits(for 3 bands)
-		while (sOhms.Length != 3) {
-			if (sOhms.Length < 3) {
-				//add 0 (black) if it is not
+		while (sOhms.Length < 2) {
 				sOhms = sOhms + "0";
-			} else if(sOhms.Length > 3) {
-				sOhms.Remove (sOhms.Length - 1);
-			}
 		}
+		ohms = float.Parse (sOhms);
+		sOhms = sOhms.Replace (".","");
 		foreach (char x in sOhms) {
 			//add a color for each value
 			colors.Add (getColor(int.Parse(""+x)));
+			if (colors.Count == 2)
+					break;
 		}
-
 		colors.Add (getColor (getMulIndex (ohms,units)));
-		foreach (Material co in colors) {
-			Debug.Log (co);
-		}
 		return colors;
 }
-	private int getMulIndex(float ohms, int units){		
-		ohms = ohms * Mathf.Pow (10,units);
+	private int getMulIndex(float ohms, int units){
+		int size = -3;
+		if (ohms > 99) {
+			size++;
+		}
+		if (ohms < 10) {
+			ohms *= 10;
+		}
+		size += units;
+		Debug.Log (ohms);
 		string sOhms = ohms.ToString ();
-		int size = 0;
 		Debug.Log (sOhms);
 		foreach (char value in sOhms) {
 			if (value != '.') {
 				size += 1;
+			} else {
+				break;
 			}
 		}
-		if (size < 3) {			
-			size = 12 - size;
+		if (size < 0) {			
+			size = 12 + size;
 		}
 		return size;
 	}
 	public void changeColor(float ohms, int units){
 		//change color
 		//load all bands into an array
-		GameObject[] bands = new GameObject[4];
-		for (int i = 1; i < 5; i++) {
+		GameObject[] bands = new GameObject[3];
+		for (int i = 1; i <=3; i++) {
 			string band = "band" + i.ToString ();
 			bands [i-1] = GameObject.FindGameObjectWithTag (band);
 		}
