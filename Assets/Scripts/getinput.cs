@@ -20,6 +20,8 @@ public class getinput : MonoBehaviour {
     public void ohmsInput(string input) {
 		if(input=="")
 			input="0";
+		if(input [input.Length-1] == '.')
+			input += "0";
 		resistance = float.Parse(input);       
 		//call changeColor function from resistor object
 		resistor.GetComponent<ResistanceCaluator> ().changeColor (resistance,units);
@@ -28,7 +30,7 @@ public class getinput : MonoBehaviour {
 	//DROPDOWN INPUT---------------------------------------------
 	static int units; 
 	public void dropSelect(int selection){
-		units = selection;
+		units = selection*3;
 		resistor.GetComponent<ResistanceCaluator> ().changeColor (resistance,units);
 	}
 
