@@ -30,7 +30,7 @@ public class getinput : MonoBehaviour {
 	//DROPDOWN INPUT---------------------------------------------
 	static int units; 
 	public void dropSelect(int selection){
-		units = selection*3;
+		units = selection;
 		resistor.GetComponent<ResistanceCaluator> ().changeColor (resistance,units);
 	}
 
