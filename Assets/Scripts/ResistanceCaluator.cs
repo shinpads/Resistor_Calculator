@@ -30,7 +30,7 @@ public class ResistanceCaluator : MonoBehaviour {
 		while (sOhms.Length < 2) {
 				sOhms = sOhms + "0";
 		}
-		ohms = float.Parse (sOhms);
+		//ohms = float.Parse (sOhms);
 		sOhms = sOhms.Replace (".","");
 		foreach (char x in sOhms) {
 			//add a color for each value
@@ -38,28 +38,28 @@ public class ResistanceCaluator : MonoBehaviour {
 			if (colors.Count == 2)
 					break;
 		}
+		//add the multiplier band
 		colors.Add (getColor (getMulIndex (ohms,units)));
 		return colors;
 }
 	private int getMulIndex(float ohms, int units){
-		int size = -3;
-		if (ohms > 99) {
-			size++;
-		}
-		if (ohms < 10) {
-			ohms *= 10;
-		}
-		size += units;
-		Debug.Log (ohms);
+		//create size variable to keep track of by what value 10^x you are multiplying the first 2 color bands by
+		int size = -2;
+		//add units to size (normal ohms = 10^(0*3) = 1 ohm, kilo ohms = 10^(1*3) = 1000 ohms etc)
+		size += units*3;
+		//convert float to a string
 		string sOhms = ohms.ToString ();
-		Debug.Log (sOhms);
-		foreach (char value in sOhms) {
-			if (value != '.') {
-				size += 1;
-			} else {
-				break;
+		if (ohms >= 1) {					
+			//bump up size for each digit before the decimal
+			foreach (char value in sOhms) {
+				if (value != '.') {
+					size += 1;
+				} else {
+					break;
+				}
 			}
 		}
+		// if the size is still negative, loop backwards
 		if (size < 0) {			
 			size = 12 + size;
 		}
