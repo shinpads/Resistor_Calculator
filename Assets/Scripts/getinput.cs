@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 /// <summary>
 /// Getting the input from inputField Object Unity.
 /// Returning Method Value to Resistance Caluator
@@ -7,16 +8,21 @@ using System.Collections;
 public class getinput : MonoBehaviour {
     //Private class resistance
 	GameObject resistor;
-
+	InputField resInput;
 	void Start(){
 		resistor = GameObject.FindGameObjectWithTag ("resistor");
+		resInput = GameObject.Find ("input_resistance").GetComponent<InputField>();
+
 	}	
 
 
 	//OHMS INPUT---------------------------------------------
-	static float resistance;
-    //Getting input from inputfield
+	static float resistance;  
     public void ohmsInput(string input) {
+		// for four bands: (rounding last digit)
+		if (input.Length == 3) {			
+			resInput.text = (int.Parse(input) / 10 * 10).ToString();
+		}
 		if(input=="")
 			input="0";
 		if(input [input.Length-1] == '.')
