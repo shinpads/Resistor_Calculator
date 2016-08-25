@@ -15,7 +15,6 @@ public class getinput : MonoBehaviour {
 
 	//OHMS INPUT---------------------------------------------
 	static float resistance;
-
     //Getting input from inputfield
     public void ohmsInput(string input) {
 		if(input=="")
@@ -33,6 +32,11 @@ public class getinput : MonoBehaviour {
 		units = selection;
 		resistor.GetComponent<ResistanceCaluator> ().changeColor (resistance,units);
 	}
-
+	//TOLERANCE PERCENT DROP DOWN--------------------------------
+	static int percentIndex;
+	public void toleranceSelect(int percent){
+		percentIndex = percent;
+		resistor.GetComponent<ResistanceCaluator> ().updateToleranceBand (percent);
+	}
 
 }
