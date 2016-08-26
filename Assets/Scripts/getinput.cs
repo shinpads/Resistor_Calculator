@@ -9,25 +9,37 @@ public class getinput : MonoBehaviour {
     //Private class resistance
 	GameObject resistor;
 	InputField resInput;
+	Dropdown tolPer;
+	Text tolText;
 	void Start(){
 		resistor = GameObject.FindGameObjectWithTag ("resistor");
 		resInput = GameObject.Find ("input_resistance").GetComponent<InputField>();
+		tolPer = GameObject.Find ("drop_tolerance").GetComponent<Dropdown> ();
+		tolText = GameObject.Find ("text_ohmsRange").GetComponent<Text> ();
 
-	}	
-
+	}
+	//UPDATE RANGE BELOW RESISTANCE INPUT
+	void updateRange(int tolPercent, float resistance){
+		tolPercent = tolPercent + 1 * 5;
+		float tolValue = resistance * tolPercent * 0.01f;
+		tolText.text = "(" + (resistance - tolValue).ToString () + " - " + (resistance + tolValue).ToString () +")";
+	}
 
 	//OHMS INPUT---------------------------------------------
 	static float resistance;  
     public void ohmsInput(string input) {
+		
 		// for four bands: (rounding last digit)
 		if (input.Length == 3) {			
 			resInput.text = (int.Parse(input) / 10 * 10).ToString();
 		}
+		//ensure string is not empty
 		if(input=="")
 			input="0";
 		if(input [input.Length-1] == '.')
 			input += "0";
-		resistance = float.Parse(input);       
+		resistance = float.Parse(input); 
+		updateRange (percentIndex, resistance);
 		//call changeColor function from resistor object
 		resistor.GetComponent<ResistanceCaluator> ().changeColor (resistance,units);
     }
@@ -41,6 +53,7 @@ public class getinput : MonoBehaviour {
 	//TOLERANCE PERCENT DROP DOWN--------------------------------
 	static int percentIndex;
 	public void toleranceSelect(int percent){
+		updateRange (percent , resistance);
 		percentIndex = percent;
 		resistor.GetComponent<ResistanceCaluator> ().updateToleranceBand (percent);
 	}
