@@ -56,5 +56,12 @@ public class getinput : MonoBehaviour {
 		percentIndex = percent;
 		resistor.GetComponent<ResistanceCaluator> ().updateToleranceBand (percent);
 	}
+	//BAND AMOUNT DROP DOWN-------------------------------------
+	static int bandCount;
+	public void bandAmountSelect(int bands){
+		bandCount = bands + 5;
+
+	}
+
 
 }

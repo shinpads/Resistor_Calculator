@@ -84,11 +84,11 @@ public class ResistanceCaluator : MonoBehaviour {
 		}
 	}
 	public void updateToleranceBand(int tol){		
-		GameObject band4 = GameObject.FindGameObjectWithTag ("band4");
+		GameObject bandTol = GameObject.FindGameObjectWithTag ("bandTol");
 		if (tol == 0) {
-			band4.GetComponent<Renderer> ().material.color = code [11].color;
+			bandTol.GetComponent<Renderer> ().material.color = code [11].color;
 		} else if (tol == 1) {
-			band4.GetComponent<Renderer> ().material.color = code [10].color;
+			bandTol.GetComponent<Renderer> ().material.color = code [10].color;
 		} 
 	}
 }
