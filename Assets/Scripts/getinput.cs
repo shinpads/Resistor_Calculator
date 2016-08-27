@@ -42,7 +42,11 @@ public class getinput : MonoBehaviour {
 			input="0";
 		//makesure last char not a decimal
 		if(input [input.Length-1] == '.')
-			input += "0";		
+			input += "0";
+		if (float.Parse (input) >= 1000) {
+			input = (int.Parse (input) / 10).ToString ();
+			resInput.text = input;
+		}
 		roundOhmInput (input);
 		resistance = float.Parse(input); 
 		updateRange (percentIndex, resistance);
