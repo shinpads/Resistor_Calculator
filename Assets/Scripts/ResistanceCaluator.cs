@@ -12,6 +12,7 @@ public class ResistanceCaluator : MonoBehaviour {
 		for(int k =0; k<12; k++){
 			code [k] = Resources.Load ("Materials/bands/b"+k.ToString(),typeof(Material)) as Material;
 		}
+		changeColor (0.0f, 0, 4);
 	}
 	//method to return which color a number is
 	private Material getColor(int num){
@@ -19,15 +20,13 @@ public class ResistanceCaluator : MonoBehaviour {
 	}
 
 	//method to return an array of colors based on resistances
-	public List<Material> convertToColor(float ohms, int units){
+	public List<Material> convertToColor(float ohms, int units, int bandCount){
 		//list to store colors
 		List<Material> colors = new List<Material>();
-
 		//Create string from ohms input value
 		string sOhms = ohms.ToString();
-
 		//make sure it is atleast 3 digits(for 3 bands)
-		while (sOhms.Length < 2) {
+		while (sOhms.Length < bandCount-2) {
 				sOhms = sOhms + "0";
 		}
 		//ohms = float.Parse (sOhms);
@@ -35,16 +34,21 @@ public class ResistanceCaluator : MonoBehaviour {
 		foreach (char x in sOhms) {
 			//add a color for each value
 			colors.Add (getColor(int.Parse(""+x)));
-			if (colors.Count == 2)
+			if (colors.Count == bandCount-2)
 					break;
 		}
 		//add the multiplier band
-		colors.Add (getColor (getMulIndex (ohms,units)));
+		if (bandCount == 4) {
+			colors.Add (code [0]);
+		}
+		colors.Add (getColor (getMulIndex (ohms,units,bandCount)));
 		return colors;
 }
-	private int getMulIndex(float ohms, int units){
+	private int getMulIndex(float ohms, int units, int bandCount){
 		//create size variable to keep track of by what value 10^x you are multiplying the first 2 color bands by
 		int size = -2;
+		if (bandCount == 5)
+			size--;
 		//add units to size (normal ohms = 10^(0*3) = 1 ohm, kilo ohms = 10^(1*3) = 1000 ohms etc)
 		size += units*3;
 		//convert float to a string
@@ -63,18 +67,21 @@ public class ResistanceCaluator : MonoBehaviour {
 		if (size < 0) {			
 			size = 12 + size;
 		}
+		if (ohms == 0) {
+			size = 0;
+		}
 		return size;
 	}
-	public void changeColor(float ohms, int units){
+	public void changeColor(float ohms, int units, int bandCount){
 		//change color
 		//load all bands into an array
-		GameObject[] bands = new GameObject[3];
-		for (int i = 1; i <=3; i++) {
+		GameObject[] bands = new GameObject[4];
+		for (int i = 1; i <=4; i++) {
 			string band = "band" + i.ToString ();
 			bands [i-1] = GameObject.FindGameObjectWithTag (band);
 		}
 		//get colors and store in list
-		List<Material> colors = convertToColor(ohms, units);
+		List<Material> colors = convertToColor(ohms, units, bandCount);
 		//for each band, set the color to the color based on the inputed resistance
 		foreach(GameObject band in bands){	
 			//set next band's color to next color in list
@@ -82,6 +89,13 @@ public class ResistanceCaluator : MonoBehaviour {
 			//remove first color in list
 			colors.RemoveAt (0);
 		}
+
+		if (bandCount == 5) {
+			bands [2].GetComponent<Renderer> ().enabled = true;
+		} else {
+			bands [2].GetComponent<Renderer> ().enabled = false;
+		}
+
 	}
 	public void updateToleranceBand(int tol){		
 		GameObject bandTol = GameObject.FindGameObjectWithTag ("bandTol");
@@ -91,4 +105,5 @@ public class ResistanceCaluator : MonoBehaviour {
 			bandTol.GetComponent<Renderer> ().material.color = code [10].color;
 		} 
 	}
+
 }

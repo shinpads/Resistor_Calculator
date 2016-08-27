@@ -9,6 +9,7 @@ TagManager:
   - band2
   - band3
   - band4
+  - bandTol
   layers:
   - Default
   - TransparentFX
