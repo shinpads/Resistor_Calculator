@@ -20,7 +20,7 @@ public class getinput : MonoBehaviour {
 	}
 	//UPDATE RANGE BELOW RESISTANCE INPUT
 	void updateRange(int tolPercent, float resistance){
-		tolPercent = tolPercent + 1 * 5;
+		tolPercent = (tolPercent + 1) * 5;
 		float tolValue = resistance * tolPercent * 0.01f;
 		tolText.text = "(" + (resistance - tolValue).ToString () + " - " + (resistance + tolValue).ToString () +")";
 	}
@@ -28,16 +28,15 @@ public class getinput : MonoBehaviour {
 	//OHMS INPUT---------------------------------------------
 	static float resistance;  
     public void ohmsInput(string input) {
-		
-		// for four bands: (rounding last digit)
-		if (input.Length == 3) {			
-			resInput.text = (int.Parse(input) / 10 * 10).ToString();
-		}
-		//ensure string is not empty
 		if(input=="")
 			input="0";
 		if(input [input.Length-1] == '.')
 			input += "0";
+		// for four bands: (rounding last digit)
+		if (input.Length == 3) {
+			if(float.Parse(input) > 1)
+				resInput.text = (int.Parse(input) / 10 * 10).ToString();
+		}
 		resistance = float.Parse(input); 
 		updateRange (percentIndex, resistance);
 		//call changeColor function from resistor object
