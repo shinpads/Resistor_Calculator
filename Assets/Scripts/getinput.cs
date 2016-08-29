@@ -28,8 +28,8 @@ public class getinput : MonoBehaviour {
 		// Round last digit
 		if (input.Length == resInput.characterLimit) {
 			//only round if resistance is greater than 1(4 band) or 10(5 band)
-			if (float.Parse (input) > Mathf.Pow (10, resInput.characterLimit - 3)){
-				resInput.text = (int.Parse(input) / 10 * 10).ToString();
+			if (float.Parse (input) > Mathf.Pow (10, resInput.characterLimit - 2)){				
+				resInput.text = (int.Parse(input)/10 * 10).ToString();
 
 			}
 		}
@@ -51,6 +51,7 @@ public class getinput : MonoBehaviour {
 		resistance = float.Parse(input); 
 		updateRange (percentIndex, resistance);
 		//call changeColor function from resistor object
+
 		resistor.GetComponent<ResistanceCaluator> ().changeColor (resistance,units,bandCount);
     }
 

@@ -25,12 +25,11 @@ public class ResistanceCaluator : MonoBehaviour {
 		List<Material> colors = new List<Material>();
 		//Create string from ohms input value
 		string sOhms = ohms.ToString();
+		sOhms = sOhms.Replace (".","");
 		//make sure it is atleast 3 digits(for 3 bands)
 		while (sOhms.Length < bandCount-2) {
 				sOhms = sOhms + "0";
 		}
-		//ohms = float.Parse (sOhms);
-		sOhms = sOhms.Replace (".","");
 		foreach (char x in sOhms) {
 			//add a color for each value
 			colors.Add (getColor(int.Parse(""+x)));
