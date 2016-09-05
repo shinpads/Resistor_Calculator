@@ -107,7 +107,7 @@ public class ResistanceCaluator : MonoBehaviour {
 
 	public float convertToOhms(List<Material> mats){
 		float resistance;
-		string ohmValues;
+		string ohmValues = "";
 		// match all colors with values
 		foreach(Material mat in mats){
 			int num = 0;
