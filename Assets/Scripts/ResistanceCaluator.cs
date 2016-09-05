@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.UI;
 
 public class ResistanceCaluator : MonoBehaviour {
 	
 	//Color codes for resistor in number order
 	Material[] code = new Material[12];
+	List<Dropdown> dropIndexes = new List<Dropdown>();
 	void Start (){
+		//load all of dropdowns
+		for(int i=1; i<=4; i++)
+			dropIndexes.Add (GameObject.Find ("drop_Band" + i.ToString ()).GetComponent<Dropdown>());		
 		//load all materials into an array in order
 		for(int k =0; k<12; k++){
 			code [k] = Resources.Load ("Materials/bands/b"+k.ToString(),typeof(Material)) as Material;
@@ -30,17 +34,22 @@ public class ResistanceCaluator : MonoBehaviour {
 		while (sOhms.Length < bandCount-2) {
 				sOhms = sOhms + "0";
 		}
+		List<int> dropVals = new List<int> ();
 		foreach (char x in sOhms) {
 			//add a color for each value
 			colors.Add (getColor(int.Parse(""+x)));
+			dropVals.Add (int.Parse(""+x));
 			if (colors.Count == bandCount-2)
 					break;
 		}
 		//add the multiplier band
 		if (bandCount == 4) {
+			dropVals.Add (0);
 			colors.Add (code [0]);
 		}
+		dropVals.Add (getMulIndex(ohms,units,bandCount));
 		colors.Add (getColor (getMulIndex (ohms,units,bandCount)));
+		updateDropDowns (dropVals);
 		return colors;
 }
 	private int getMulIndex(float ohms, int units, int bandCount){
@@ -95,6 +104,12 @@ public class ResistanceCaluator : MonoBehaviour {
 			bands [2].GetComponent<Renderer> ().enabled = false;
 		}
 
+	}
+	public void updateDropDowns(List<int> values){
+		//set value of each drop down to its color
+		for (int i = 0; i < 4; i++) {
+			dropIndexes [i].value = values [i];
+		}
 	}
 	public void updateToleranceBand(int tol){		
 		GameObject bandTol = GameObject.FindGameObjectWithTag ("bandTol");
