@@ -271,7 +271,7 @@ RectTransform:
   - {fileID: 1164059450}
   - {fileID: 204380510}
   m_Father: {fileID: 823716387}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 263.4, y: -10}
@@ -4962,6 +4962,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 269309107}
+  - {fileID: 1203994256}
   - {fileID: 1658228040}
   - {fileID: 1695003213}
   - {fileID: 1117978110}
@@ -5784,7 +5785,7 @@ RectTransform:
   - {fileID: 743655345}
   - {fileID: 17273267}
   m_Father: {fileID: 823716387}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 52, y: -10}
@@ -5863,6 +5864,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 532533103}
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1203994255}
+        m_MethodName: updateColorBands
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6188,7 +6200,7 @@ RectTransform:
   - {fileID: 1651559055}
   - {fileID: 434716787}
   m_Father: {fileID: 823716387}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 156.2, y: -9.999985}
@@ -6267,6 +6279,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 532533103}
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1203994255}
+        m_MethodName: updateColorBands
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6485,6 +6508,45 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1196045760}
+--- !u!1 &1203994254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1203994256}
+  - 114: {fileID: 1203994255}
+  m_Layer: 0
+  m_Name: drop_BandColorUpdater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1203994255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1203994254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92a863fe55a58b64ba64ffbb36dc2a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1203994256
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1203994254}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -400.1439, y: -207.85434, z: 0.45000005}
+  m_LocalScale: {x: 1.0695187, y: 1.0695187, z: 1}
+  m_Children: []
+  m_Father: {fileID: 823716387}
+  m_RootOrder: 1
 --- !u!1 &1204014223
 GameObject:
   m_ObjectHideFlags: 0
@@ -7975,7 +8037,7 @@ RectTransform:
   - {fileID: 1603175619}
   - {fileID: 1196045761}
   m_Father: {fileID: 823716387}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -155, y: -10}
@@ -8050,6 +8112,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 532533103}
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1203994255}
+        m_MethodName: updateColorBands
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8226,7 +8299,7 @@ RectTransform:
   - {fileID: 286258901}
   - {fileID: 1354888258}
   m_Father: {fileID: 823716387}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -52, y: -10}
@@ -8301,6 +8374,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 532533103}
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1203994255}
+        m_MethodName: updateColorBands
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9178,7 +9262,7 @@ RectTransform:
   - {fileID: 846786067}
   - {fileID: 735786747}
   m_Father: {fileID: 823716387}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -316, y: -93.9}

@@ -11,6 +11,7 @@ public class getinput : MonoBehaviour {
 	InputField resInput;
 	Dropdown tolPer;
 	Text tolText;
+	Dropdown[] bandColorDrop = new Dropdown[5];
 	void Start(){
 		resistor = GameObject.FindGameObjectWithTag ("resistor");
 		resInput = GameObject.Find ("input_resistance").GetComponent<InputField>();
@@ -74,6 +75,16 @@ public class getinput : MonoBehaviour {
 		resInput.characterLimit = bands + 3;
 		bandCount = bands + 4;
 		resistor.GetComponent<ResistanceCaluator> ().changeColor (resistance,units,bandCount);
+	}
+	//COLOR SELECT BANDS-------------------------------------
+	static int[] bandColors = new int[5];
+	public void updateColorBands(){
+		for (int i = 0; i < 5; i++) {
+			bandColorDrop [i] = GameObject.Find ("drop_Band" + (i+1).ToString ()).GetComponent<Dropdown>();
+		}
+		for (int i = 0; i < 5; i++) {
+			bandColors [i] = bandColorDrop [i].value;
+		}
 	}
 
 
