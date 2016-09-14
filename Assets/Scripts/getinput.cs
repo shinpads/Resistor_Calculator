@@ -77,14 +77,22 @@ public class getinput : MonoBehaviour {
 		resistor.GetComponent<ResistanceCaluator> ().changeColor (resistance,units,bandCount);
 	}
 	//COLOR SELECT BANDS-------------------------------------
-	static int[] bandColors = new int[5];
+	static float[] bandColors = new float[5];
 	public void updateColorBands(){
-		for (int i = 0; i < 5; i++) {
-			bandColorDrop [i] = GameObject.Find ("drop_Band" + (i+1).ToString ()).GetComponent<Dropdown>();
+		for (int i = 0; i < 4; i++) {
+			bandColorDrop [i] = GameObject.Find ("drop_Band" +1).GetComponent<Dropdown>();
 		}
-		for (int i = 0; i < 5; i++) {
-			bandColors [i] = bandColorDrop [i].value;
+		for (int i = 0; i < 4; i++) {
+			bandColors [i] = bandColorDrop [i].value * 1.0f;
 		}
+		string values = bandColors [0].ToString () + bandColors [1].ToString ();
+
+		if (bandCount == 5) {
+			values += bandColors [2].ToString ();
+		}
+		resistance = float.Parse (values);
+		units = Mathf.RoundToInt (bandColors [3]);
+		resistor.GetComponent<ResistanceCaluator> ().changeColor (resistance,units,bandCount);
 	}
 
 

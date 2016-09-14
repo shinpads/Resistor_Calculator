@@ -120,7 +120,8 @@ public class ResistanceCaluator : MonoBehaviour {
 		} 
 	}
 
-	public float convertToOhms(List<Material> mats){
+	public void convertToOhms(float[] mats,int bands){
+		/*
 		float resistance;
 		string ohmValues = "";
 		// match all colors with values
@@ -136,6 +137,7 @@ public class ResistanceCaluator : MonoBehaviour {
 		int mulValue = ohmValues[ohmValues.Length-1];
 		resistance = float.Parse(ohmValues.Substring (0,ohmValues.Length-1)) * Mathf.Pow(10,mulValue);
 		return resistance;
+		*/
 	}
 
 }
